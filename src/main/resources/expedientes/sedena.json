@@ -1,0 +1,223 @@
+{
+  "institucion": "SEDENA",
+  "paciente": {
+    "curpPaciente": "GOML850101HDFMRR09",
+    "nombre": "JUAN",
+    "primerApellido": "GOMEZ",
+    "segundoApellido": "LOPEZ",
+    "fechaNacimiento": "1985-01-01",
+    "genero": "Masculino",
+    "numAfiliacion": "12345678901",
+    "numExpediente": "EXP-SEDENA-2024-00441",
+    "calidadAsegurado": "PENSIONADO"
+  },
+  "domicilio": {
+    "entidadResidencia": "CIUDAD DE MEXICO",
+    "paisResidencia": "MEXICO",
+    "municipioResidencia": "CUAUHTEMOC",
+    "localidadResidencia": "JUAREZ",
+    "codigoPostal": "06600"
+  },
+  "notasMedicas": [
+    {
+      "folioAtencion": "REF-SEDENA-2025-08-20-08812",
+      "fechaConsulta": "2025-11-10",
+      "servicioAtencion": "Medicina Familiar",
+      "relacionTemporal": "PRIMERA VEZ",
+      "nombreCIE9": null,
+      "nombreCIE10": "Faringitis aguda",
+      "diagnosticoDescripcion": "Faringitis aguda estreptococica. Paciente refiere odinofagia intensa de 3 dias de evolucion, fiebre de 38.5 grados y malestar general. A la exploracion se observa faringe eritematosa con exudado blanquecino bilateral. Se prescribe antibioticoterapia y antipiretico.",
+      "diagnosticosSecundarios": [
+        "Hipertensión arterial",
+        "Diabetes tipo 2",
+        "Obesidad mórbida"
+      ],
+      "peso": 82,
+      "talla": 175,
+      "sistolica": 118,
+      "diastolica": 76,
+      "frecuenciaCardiaca": 88,
+      "temperatura": 38.5,
+      "saturacionOxigeno": 97,
+      "glucemia": 94,
+      "circunferenciaCintura": 91,
+      "frecuenciaRespiratoria": 18,
+      "exploracionFisica": "Paciente consciente, orientado. Mucosas hidratadas. Cardiopulmonar sin compromiso. Abdomen blando, depresible, sin megalias. Reflejos ++.",
+      "notaAdicional": "Se explica a familiar la condición del paciente y el pronóstico. Se firma consentimiento informado. Pendiente de resultados de laboratorio para decidir el alta",
+      "unidad": {
+        "clues": "DFSSA000101",
+        "nombreUnidad": "UMF No. 10 Doctor Martin Luis Guzman Ferrer",
+        "entidadFederativa": "CIUDAD DE MEXICO",
+        "nivelAtencion": "PRIMER NIVEL"
+      },
+      "prestador": {
+        "nombrePrestador": "JUAN",
+        "primerApellidoPrestador": "GOMEZ",
+        "segundoApellidoPrestador": "LOPEZ",
+        "cedulaProfesional": "3456789",
+        "numeroEmpleado": "987654",
+        "cedulaEspecialidad": "3398967"
+      }
+    }
+  ],
+  "incapacidades": [
+    {
+      "folioAtencion": "REF-SEDENA-2025-08-20-08812",
+      "folioUnico": "INC-2025-0044123",
+      "fechaInicio": "2025-11-10",
+      "fechaFin": "2025-11-17",
+      "diasOtorgados": 7,
+      "tipoIncapacidad": "1",
+      "fechaExpedicion": "2025-11-10",
+      "nombreCIE9": null,
+      "nombreCIE10": "Faringitis aguda",
+      "diagnostico": "Faringitis aguda estreptococica. Reposo y antibiotico.",
+      "areaServicio": "Urgencias",
+      "unidad": {
+        "clues": "DFSSA000101",
+        "nombreUnidad": "UMF No. 10 Doctor Martin Luis Guzman Ferrer",
+        "entidadFederativa": "CIUDAD DE MEXICO",
+        "nivelAtencion": "PRIMER NIVEL"
+      },
+      "prestador": {
+        "nombrePrestador": "JUAN",
+        "primerApellidoPrestador": "GOMEZ",
+        "segundoApellidoPrestador": "LOPEZ",
+        "cedulaProfesional": "3456789",
+        "numeroEmpleado": "987654",
+        "cedulaEspecialidad": "1237890"
+      }
+    },
+    {
+      "folioAtencion": "REF-SEDENA-2025-08-20-08812",
+      "folioUnico": "INC-2024-0031088",
+      "fechaInicio": "2024-03-05",
+      "fechaFin": "2024-03-12",
+      "diasOtorgados": 7,
+      "tipoIncapacidad": "1",
+      "fechaExpedicion": "2024-03-05",
+      "diagnostico": "Lumbalgia mecanica aguda. Reposo relativo y antiinflamatorios.",
+      "nombreCIE9": null,
+      "nombreCIE10": "Lumbalgia",
+      "areaServicio": "Urgencias",
+      "unidad": {
+        "clues": "DFSSA000101",
+        "nombreUnidad": "UMF No. 10 Doctor Martin Luis Guzman Ferrer",
+        "entidadFederativa": "CIUDAD DE MEXICO",
+        "nivelAtencion": "PRIMER NIVEL"
+      },
+      "prestador": {
+        "nombrePrestador": "JUAN",
+        "primerApellidoPrestador": "GOMEZ",
+        "segundoApellidoPrestador": "LOPEZ",
+        "cedulaProfesional": "3456789",
+        "numeroEmpleado": "987654",
+        "cedulaEspecialidad": "1237890"
+      }
+    }
+  ],
+  "recetas": [
+    {
+      "folioAtencion": "REF-SEDENA-2025-08-20-08812",
+      "recetas": [
+        {
+          "folioReceta": "REC-987654321",
+          "tipoReceta": "Resurtible",
+          "fechaExpedicion": "2025-11-10",
+          "medicamentos": [
+            {
+              "medicamento": "Paracetamol 500 mg tableta. Caja con 20 tabletas.",
+              "esGenerico": "Sí",
+              "codigoOrden": "MEDAF001",
+              "viaAdministracion": "Oral",
+              "indicaciones": "Tomar 1 tableta cada 8 horas por 5 días. Acompañar con los alimentos.",
+              "medidaDosis": "tableta",
+              "cantidadIntervalo": "8",
+              "medidaIntervalo": "Horas",
+              "cantidadDuracion": "5",
+              "medidaDuracion": "Días",
+              "cantidadDosis": "1",
+              "cantidadSurtir": "2",
+              "fechaSurtimiento": "2025-10-12"
+            }
+          ]
+        }
+      ],
+      "unidad": {
+        "clues": "DFSSA000101",
+        "nombreUnidad": "UMF No. 10 Doctor Martin Luis Guzman Ferrer",
+        "entidadFederativa": "CIUDAD DE MEXICO",
+        "nivelAtencion": "PRIMER NIVEL"
+      },
+      "prestador": {
+        "nombrePrestador": "JUAN",
+        "primerApellidoPrestador": "GOMEZ",
+        "segundoApellidoPrestador": "LOPEZ",
+        "cedulaProfesional": "3456789",
+        "numeroEmpleado": "987654",
+        "cedulaEspecialidad": "1237890"
+      }
+    }
+  ],
+  "laboratorio": [
+    {
+      "folioAtencion": "REF-SEDENA-2025-08-20-08812",
+      "claveEstudio": "LAB-SEDENA-2026-02-10-4421",
+      "clasificacionEstudio": "QUIMICA CLINICA",
+      "nombreEstudio": "PERFIL LIPIDICO COMPLETO",
+      "fechaSolicitud": "2025-11-11",
+      "fechaTomaMuestra": "2025-11-11",
+      "fechaResultado": "2026-02-10",
+      "nombreServicioSolicitante": "CARDIOLOGIA",
+      "valorResultado": "COLESTEROL TOTAL: 202 mg/dL. LDL: 128 mg/dL (meta menor 100 sin alcanzar). HDL: 46 mg/dL. TRIGLICERIDOS: 140 mg/dL. COLESTEROL NO-HDL: 156 mg/dL.",
+      "urlResultados": "https://storage.sedena.gob.mx/laboratorio/LAB-SEDENA-2025-110044.pdf?token=tkn_a1b2c3&expires=1741125600",
+      "unidad": {
+        "clues": "DFSSA000101",
+        "nombreUnidad": "UMF No. 10 Doctor Martin Luis Guzman Ferrer",
+        "entidadFederativa": "CIUDAD DE MEXICO",
+        "nivelAtencion": "PRIMER NIVEL"
+      },
+      "prestador": {
+        "nombrePrestador": "JUAN",
+        "primerApellidoPrestador": "GOMEZ",
+        "segundoApellidoPrestador": "LOPEZ",
+        "cedulaProfesional": "3456789",
+        "numeroEmpleado": "987654",
+        "cedulaEspecialidad": "2121112"
+      }
+    }
+  ],
+  "referenciasMedicas": [
+    {
+      "folioAtencion": "REF-SEDENA-2025-08-20-08812",
+      "diagnostico": "Hiperlipidemia mixta e hipertension arterial en estadio 1. Riesgo cardiovascular moderado.",
+      "especialidad": "CARDIOLOGIA",
+      "motivoEnvio": "Se solicita valoración por cardiología para estratificación de riesgo cardiovascular y ajuste terapéutico.",
+      "fechaSolicitud": "2026-11-13",
+      "fechaAutorizacion": "2024-03-10",
+      "estatusReferencia": "Aprobada",
+      "motivoRechazo": "La paciente no requiere atención de esta especialidad.",
+      "cluesReceptora": "DFSSA000001",
+      "unidadReceptora": "Servicio de Cardiologia SEDENA Lindavista",
+      "informacionCaso": "Paciente masculino de 40 anos con hiperlipidemia mixta e hipertension arterial estadio 1. Se solicita valoracion por cardiologia para estratificacion de riesgo cardiovascular, metas terapeuticas y ajuste de tratamiento.",
+      "tipoReferencia": "Ordinaria",
+      "ocasionServicio": "PRIMERA VEZ",
+      "nombreMedicoRevisor": "Dra. María Sánchez Cruz",
+      "cedulaMedicoRevisor": "8899001",
+      "unidad": {
+        "clues": "DFSSA000101",
+        "nombreUnidad": "UMF No. 10 Doctor Martin Luis Guzman",
+        "entidadFederativa": "CIUDAD DE MEXICO",
+        "nivelAtencion": "PRIMER NIVEL"
+      },
+      "prestador": {
+        "nombrePrestador": "JUAN",
+        "primerApellidoPrestador": "GOMEZ",
+        "segundoApellidoPrestador": "LOPEZ",
+        "cedulaProfesional": "3456789",
+        "numeroEmpleado": "987654",
+        "cedulaEspecialidad": "1237890"
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+package com.encitpted.base.crypto;
+
+import java.nio.charset.StandardCharsets;
+
+/**
+ * Builds the additional authenticated data (AAD) that binds a response
+ * to its request:
+ * request_id | source_service | destination_service | timestamp | schema_version
+ */
+public final class AadCodec {
+
+    private static final String SCHEMA_VERSION = "v1";
+
+    private AadCodec() {}
+
+    public static byte[] build(
+            String requestId,
+            String sourceService,
+            String destinationService,
+            long timestampEpochSeconds) {
+
+        String aad = String.join("|",
+                requestId,
+                sourceService,
+                destinationService,
+                Long.toString(timestampEpochSeconds),
+                SCHEMA_VERSION
+        );
+
+        return aad.getBytes(StandardCharsets.UTF_8);
+    }
+}
