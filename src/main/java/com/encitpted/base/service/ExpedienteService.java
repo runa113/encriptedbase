@@ -2,7 +2,6 @@ package com.encitpted.base.service;
 
 import com.encitpted.base.crypto.AadCodec;
 import com.encitpted.base.crypto.CryptoUtils;
-import com.encitpted.base.crypto.EncryptedEnvelope;
 import com.encitpted.base.crypto.HpkeCodec;
 import com.encitpted.base.dto.ExpedienteRequestDto;
 import com.encitpted.base.dto.ExpedienteResponseDto;
@@ -74,80 +73,33 @@ public class ExpedienteService {
 
         /*
          * 2. Leemos el expediente.
-         *
-         * Por ahora utilizamos sedena.json únicamente
-         * como expediente de prueba.
          */
         JsonNode expediente =
                 leerJson(EXPEDIENTE_PATH);
 
         /*
-         * 3. Ciframos el expediente.
+         * 3. Ciframos y regresamos directamente
+         *    la respuesta de SEDENA.
          */
-        EncryptedEnvelope envelope =
-                handle(
-                        traceId,
-                        INSTITUCION,
-                        solicitante,
-                        requesterPublicKeyBytes,
-                        expediente
-                );
-
-        /*
-         * 4. Convertimos los bytes obtenidos del
-         *    cifrado a Base64.
-         *
-         * enc -> publicKey de la respuesta
-         * ct  -> encryptedData
-         */
-        String publicKeyBase64 =
-                Base64.getEncoder()
-                        .encodeToString(
-                                envelope.enc());
-
-        String encryptedDataBase64 =
-                Base64.getEncoder()
-                        .encodeToString(
-                                envelope.ct());
-
-        log.info("======================================");
-        log.info("EXPEDIENTE CIFRADO");
-        log.info("INSTITUCION: {}", INSTITUCION);
-        log.info("TRACE ID: {}", envelope.rid());
-        log.info("SOLICITANTE: {}", solicitante);
-        log.info("TIMESTAMP: {}", envelope.ts());
-        log.info("ENC length: {}", envelope.enc().length);
-        log.info("CT length: {}", envelope.ct().length);
-        log.info("PUBLIC KEY Base64: {}", publicKeyBase64);
-        log.info("ENCRYPTED DATA Base64: {}", encryptedDataBase64);
-        log.info("======================================");
-
-        /*
-         * 5. Construimos la respuesta de la institución.
-         */
-        return ExpedienteResponseDto.builder()
-                .institucion(INSTITUCION)
-                .code("SUCCESS")
-                .detail("Expediente encontrado")
-                .encryptedData(encryptedDataBase64)
-                .publicKey(publicKeyBase64)
-                .timestamp(
-                        String.valueOf(
-                                envelope.ts()))
-                .traceId(envelope.rid())
-                .build();
+        return cifrarExpediente(
+                traceId,
+                INSTITUCION,
+                solicitante,
+                requesterPublicKeyBytes,
+                expediente
+        );
     }
 
     /**
      * Cifra el expediente utilizando la clave pública
      * X25519 de la institución solicitante.
      */
-    private EncryptedEnvelope handle(
-            String requestId,
-            String serviceName,
-            String requester,
+    private ExpedienteResponseDto cifrarExpediente(
+            String traceId,
+            String institucion,
+            String solicitante,
             byte[] requesterPublicKeyBytes,
-            JsonNode payload) throws Exception {
+            JsonNode expediente) throws Exception {
 
         /*
          * 1. Convertimos los bytes recibidos en una
@@ -160,28 +112,29 @@ public class ExpedienteService {
         /*
          * 2. Serializamos todo el expediente JSON.
          */
-        byte[] json = objectMapper.writeValueAsBytes(payload);
+        byte[] json =
+                objectMapper.writeValueAsBytes(expediente);
 
         /*
          * 3. Generamos timestamp UNIX.
          */
-        long ts = Instant.now().getEpochSecond();
+        long timestamp =
+                Instant.now().getEpochSecond();
 
         /*
          * 4. Construimos el AAD.
          *
-         * requestId   = X-Trace-Id
-         * serviceName = SEDENA
-
-         * requester   = X-Solicitante
-         * ts          = timestamp actual
+         * traceId     = X-Trace-Id
+         * institucion = SEDENA
+         * solicitante = X-Solicitante
+         * timestamp   = timestamp actual
          */
         byte[] aad =
                 AadCodec.build(
-                        requestId,
-                        serviceName,
-                        requester,
-                        ts);
+                        traceId,
+                        institucion,
+                        solicitante,
+                        timestamp);
 
         /*
          * 5. Ciframos mediante HPKE.
@@ -194,16 +147,44 @@ public class ExpedienteService {
                         json);
 
         /*
-         * 6. Regresamos internamente el resultado
-         *    del cifrado.
+         * 6. Convertimos el resultado del cifrado
+         *    a Base64.
+         *
+         * enc        -> publicKey
+         * ciphertext -> encryptedData
          */
-        return new EncryptedEnvelope(
-                requestId,
-                serviceName,
-                ts,
-                sealed.enc(),
-                sealed.ciphertext()
-        );
+        String publicKeyBase64 =
+                Base64.getEncoder()
+                        .encodeToString(sealed.enc());
+
+        String encryptedDataBase64 =
+                Base64.getEncoder()
+                        .encodeToString(sealed.ciphertext());
+
+        log.info("======================================");
+        log.info("EXPEDIENTE CIFRADO");
+        log.info("INSTITUCION: {}", institucion);
+        log.info("TRACE ID: {}", traceId);
+        log.info("SOLICITANTE: {}", solicitante);
+        log.info("TIMESTAMP: {}", timestamp);
+        log.info("ENC length: {}", sealed.enc().length);
+        log.info(
+                "CT length: {}",
+                sealed.ciphertext().length);
+        log.info("======================================");
+
+        /*
+         * 7. Construimos directamente el DTO final.
+         */
+        return ExpedienteResponseDto.builder()
+                .institucion(institucion)
+                .code("SUCCESS")
+                .detail("Expediente encontrado")
+                .encryptedData(encryptedDataBase64)
+                .publicKey(publicKeyBase64)
+                .timestamp(String.valueOf(timestamp))
+                .traceId(traceId)
+                .build();
     }
 
     /**
